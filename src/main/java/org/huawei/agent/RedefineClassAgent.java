@@ -16,7 +16,8 @@ import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+//Tutorial:
+//https://github.com/turn/RedefineClassAgent
 public class RedefineClassAgent {
     /**
      * Use the Java logger to avoid any references to anything not supplied by the JVM. This avoids issues with
