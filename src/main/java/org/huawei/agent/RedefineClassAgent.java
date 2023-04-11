@@ -15,6 +15,8 @@ public class RedefineClassAgent {
 
     private static volatile Instrumentation instrumentation = null;
 
+    private static final String LINKED_LIST = "java.util.LinkedList";
+
     /**
      * Agent entry point. Do not call this directly.
      * <p>
@@ -23,26 +25,35 @@ public class RedefineClassAgent {
      * Sets {@link #instrumentation} to {@code inst}, provided {@code inst} supports class redefinition.
      *
      * @param agentArgs
-     * @param inst This is the reason this class exists. {@link Instrumentation} has the
-     *             {@link Instrumentation#redefineClasses(ClassDefinition...)} method.
+     * @param inst      This is the reason this class exists. {@link Instrumentation} has the
+     *                  {@link Instrumentation#redefineClasses(ClassDefinition...)} method.
      */
     public static void premain(String agentArgs, Instrumentation inst) throws NotFoundException, CannotCompileException, IOException, ClassNotFoundException, UnmodifiableClassException {
-        System.out.println("Agent was loaded...");
 
-        JarFile jar = new JarFile(agentArgs);
-        inst.appendToBootstrapClassLoaderSearch(jar);
+        System.out.println("Agent was loaded...");
 
         if (!inst.isRedefineClassesSupported()) {
             System.out.println("Class redefinition not supported. Aborting.");
             return;
         }
+
+        if (agentArgs.isEmpty() || agentArgs == null) {
+            System.out.println("You must add path to jar file with GeneratedLinkedList");
+            return;
+        }
+
+        // Add my generated implementation of the LinkedList to boostrap classLoader;
+        // Name of this implementation is: "org.huawei.GeneratedLinkedList"
+        JarFile jar = new JarFile(agentArgs);
+        inst.appendToBootstrapClassLoaderSearch(jar);
+
         // find a reference to the class and method you wish to inject
         ClassPool classPool = ClassPool.getDefault();
         classPool.insertClassPath(agentArgs);
-        //classPool.importPackage("org.huawei.GeneratedArrayList");
-        CtClass experiment = classPool.get("org.huawei.GeneratedLinkedList");
-        //System.out.println(experiment.getDeclaredMethods().length);
-        CtClass ctClass = classPool.get("java.util.LinkedList");
+
+        CtClass ctClass = classPool.get(LINKED_LIST);
+        // TODO
+        // I don't know what this method does... ?
         ctClass.stopPruning(true);
 
         // javaassist freezes methods if their bytecode is saved
@@ -51,37 +62,34 @@ public class RedefineClassAgent {
             ctClass.defrost();
         }
 
-        //CtMethod method = ctClass.getDeclaredMethod("add", new CtClass[]{classPool.get("java.lang.Object")}); // populate this from ctClass however you wish
+        // Changes in "size" method:
         CtMethod method = ctClass.getDeclaredMethod("size"); // populate this from ctClass however you wish
+        method.insertBefore("System.out.println(\"This line is printing before size method...\" + Thread.currentThread().getStackTrace()[2].getClassName());");
 
-        method.insertBefore("System.out.println(\"Wheeeeee11! \" + Thread.currentThread().getStackTrace()[2].getClassName());");
-        CtMethod methodAdd = ctClass.getDeclaredMethod("add",new CtClass[]{classPool.get("java.lang.Object")});
-        //methodAdd.setBody("{Class.forName(org.huawei.agent.GeneratedArrayList); GeneratedArrayList gen = new GeneratedArrayList(this); " + "return gen.add(1);}");
-        //methodAdd.addLocalVariable("gen", classPool.get("org.huawei.agent.GeneratedArrayList"));
-        method.setBody("{org.huawei.GeneratedLinkedList gen = new org.huawei.GeneratedLinkedList(); return gen.add(java.lang.Integer.valueOf(1));}");
-        //method.setBody("{ linkLast($1); org.huawei.GeneratedLinkedList gen = new org.huawei.GeneratedLinkedList(this); return gen.add($1);}");
-        //ctClass.addField(new CtField(classPool.get("java.lang.Integer"),"any"));
-        //CtField f1 = CtField.make("int testVar1 = 0;", ctClass);
-        //f1.setModifiers(9);
-        //ctClass.addField(f1);
-        //ctClass.getClassPool().importPackage("org.huawei.agent.GeneratedArrayList");
+        // Changes in "add" method:
+        CtMethod methodAdd = ctClass.getDeclaredMethod("add", new CtClass[]{classPool.get("java.lang.Object")});
+        methodAdd.setBody("{ linkLast($1); " +
+                "org.huawei.GeneratedLinkedList gen = new org.huawei.GeneratedLinkedList(this); " +
+                "return gen.add($1);}");
 
-        byte[] bytecode = ctClass.toBytecode();
         instrumentation = inst;
-        ClassDefinition definition = new ClassDefinition(Class.forName("java.util.LinkedList"), bytecode);
+
+        // Changes in the "java.util.LinkedList" class;
+        byte[] bytecode = ctClass.toBytecode();
+        ClassDefinition definition = new ClassDefinition(Class.forName(LINKED_LIST), bytecode);
         RedefineClassAgent.redefineClasses(definition);
     }
 
     /**
      * Attempts to redefine class bytecode.
-     * @see Instrumentation#redefineClasses(ClassDefinition...)
      *
      * @param definitions classes to redefine.
      * @throws UnmodifiableClassException as thrown by {@link Instrumentation#redefineClasses(ClassDefinition...)}
-     * @throws ClassNotFoundException as thrown by {@link Instrumentation#redefineClasses(ClassDefinition...)}
+     * @throws ClassNotFoundException     as thrown by {@link Instrumentation#redefineClasses(ClassDefinition...)}
+     * @see Instrumentation#redefineClasses(ClassDefinition...)
      */
     public static void redefineClasses(ClassDefinition... definitions)
-            throws UnmodifiableClassException, ClassNotFoundException{
+            throws UnmodifiableClassException, ClassNotFoundException {
         instrumentation.redefineClasses(definitions);
     }
 }

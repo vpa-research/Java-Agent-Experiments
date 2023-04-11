@@ -67,7 +67,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
-                    <argLine>-javaagent:target//mockTime-jar-with-dependencies.jar="C:\Users\alexe\IdeaProjects\GeneratedCollectionClasses\target\GeneratedCollectionClasses-1.0-SNAPSHOT.jar" --add-exports java.base/java.util=ALL-UNNAMED --add-reads java.base=ALL-UNNAMED</argLine>
+                    <argLine>
+                        -javaagent:target//mockTime-jar-with-dependencies.jar="C:\Users\alexe\IdeaProjects\GeneratedCollectionClasses\target\GeneratedCollectionClasses-1.0-SNAPSHOT.jar"
+                        --add-exports java.base/java.util=ALL-UNNAMED --add-reads java.base=ALL-UNNAMED
+                    </argLine>
                 </configuration>
             </plugin>
         </plugins>
