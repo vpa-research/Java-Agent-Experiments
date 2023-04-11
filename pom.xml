@@ -25,7 +25,7 @@
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
-            <version>3.24.0-GA</version>
+            <version>3.29.2-GA</version>
         </dependency>
     </dependencies>
 
@@ -67,7 +67,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
                 <configuration>
-                    <argLine>-javaagent:target//mockTime-jar-with-dependencies.jar</argLine>
+                    <argLine>-javaagent:target//mockTime-jar-with-dependencies.jar="C:\Users\alexe\IdeaProjects\GeneratedCollectionClasses\target\GeneratedCollectionClasses-1.0-SNAPSHOT.jar" --add-exports java.base/java.util=ALL-UNNAMED --add-reads java.base=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
         </plugins>
