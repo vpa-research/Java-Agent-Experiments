@@ -1,0 +1,11 @@
+java -javaagent:"C:\Users\alexe\IdeaProjects\JavaAgentArrayListMethodReplacer\target\mockTime-jar-with-dependencies.jar=C:\Users\alexe\IdeaProjects\GeneratedCollectionClasses\target\GeneratedCollectionClasses-1.0-SNAPSHOT.jar" -cp "C:\Users\alexe\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\alexe\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\alexe\IdeaProjects\JavaAgentArrayListMethodReplacer\target\JavaAgentArrayListMethodReplacer-1.0-SNAPSHOT.jar;C:\Users\alexe\IdeaProjects\JavaAgentArrayListMethodReplacer\target\JavaAgentArrayListMethodReplacer-1.0-SNAPSHOT-tests.jar" org.junit.runner.JUnitCore MainTest
+
+
+
+
+
+
+javac -cp "C:\Users\alexe\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\alexe\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\
+Users\alexe\IdeaProjects\JavaAgentArrayListMethodReplacer\JarExample.jar" C:\Users\alexe\IdeaProjects\JavaAgentArrayListMethodReplacer\src\test\java\MainTest.java
+
+jar cfe JarExample.jar "Main" "Main.class" "MainTest.class"
