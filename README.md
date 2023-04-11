@@ -8,4 +8,4 @@ How run this project ?
 4. You must download this project from this repository: https://github.com/vpa-research/Java-Agent-Experiments
 5. You must change this path "C:\Users\alexe\IdeaProjects\GeneratedCollectionClasses\target\GeneratedCollectionClasses-1.0-SNAPSHOT.jar" from pom.file to your path.
 6. You must build it with such command: "clean package -DskipTests".
-7. You can run test's with such command: "test".
+7. You can run test's with such command: "surefire:test".
