@@ -7,12 +7,13 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
-public class Transformer implements ClassFileTransformer {
+public class JavaAssistTransformer implements ClassFileTransformer {
 
     private static final String LINKED_LIST = "java.util.LinkedList";
     private static String AGENT_ARGS;
 
-    public Transformer(String agentArgs) {
+    public JavaAssistTransformer(String agentArgs) {
+        System.out.println("Was created JavaAssist transformer");
         AGENT_ARGS = agentArgs;
     }
 

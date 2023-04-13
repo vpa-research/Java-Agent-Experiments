@@ -75,7 +75,8 @@ public class RedefineClassAgent {
 //        ClassDefinition definition = new ClassDefinition(Class.forName(LINKED_LIST), bytecode);
 //        RedefineClassAgent.redefineClasses(definition);
         instrumentation = inst;
-        instrumentation.addTransformer(new Transformer(agentArgs));
+        //instrumentation.addTransformer(new JavaAssistTransformer(agentArgs));
+        instrumentation.addTransformer(new AsmTransformer(agentArgs));
     }
 
 
