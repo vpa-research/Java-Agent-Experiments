@@ -27,4 +27,12 @@ public class MethodVisitorImpl extends MethodVisitor  {
         super.visitTypeInsn(opcode, type);
     }
 
+    @Override
+    public void visitFieldInsn(int opcode, String owner, String name, String descriptor) {
+        System.out.println("FILED OWNER: " + owner+" "+descriptor);
+        if("Ljava/util/LinkedList;".equals(descriptor))
+            descriptor = "Lorg/huawei/GenLinkedList;";
+        super.visitFieldInsn(opcode, owner, name, descriptor);
+    }
+
 }

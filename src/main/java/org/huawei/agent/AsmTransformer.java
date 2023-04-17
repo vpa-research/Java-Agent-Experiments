@@ -20,7 +20,7 @@ public class AsmTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
-        if("LinkedListTest".equals(className)) {
+        if("LinkedListTest".equals(className) || "LinkedListFieldListInClassTest".equals(className)) {
             ClassReader cr = new ClassReader(classfileBuffer);
             ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_FRAMES);
             ClassVisitorImpl classVisitor = new ClassVisitorImpl(cw);
