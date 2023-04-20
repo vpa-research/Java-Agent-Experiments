@@ -11,6 +11,7 @@ public class ClassNamesReaderUtil {
         classesSet.add("LinkedListInsideOtherClassTest");
         classesSet.add("LinkedListTest");
         classesSet.add("ListContainer");
+        classesSet.add("LinkedListWithStaticMethodTest");
         return classesSet;
     }
 }

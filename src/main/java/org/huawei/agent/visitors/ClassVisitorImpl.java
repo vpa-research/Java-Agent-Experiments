@@ -13,18 +13,24 @@ public class ClassVisitorImpl extends ClassVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-        System.out.println(name);
+        //System.out.println("Name of the current method: " + name+" \nDescriptor of the current method: " + descriptor+" "+ signature);
+
+        if(descriptor.contains("java/util/LinkedList")){
+//            descriptor = "()Lorg/huawei/GeneratedLinkedList;";
+//            signature = "<E:Ljava/lang/Object;>()Lorg/huawei/GeneratedLinkedList<TE;>;";
+            descriptor = descriptor.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
+            signature = signature.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
+        }
         MethodVisitor defaultMethodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions);
         return new MethodVisitorImpl(defaultMethodVisitor);
-        //return super.visitMethod(access, name, descriptor, signature, exceptions);
     }
 
     @Override
     public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
         //System.out.println("DESCRIPTOR OF THE FIELD: "+descriptor+" Name: " + name+" Signature: "+signature+" Value: " + value);
         if("Ljava/util/LinkedList;".equals(descriptor)) {
-            descriptor = "Lorg/huawei/GenLinkedList;";
-            signature = "Lorg/huawei/GenLinkedList<Ljava/lang/Integer;>;";
+            descriptor = "Lorg/huawei/GeneratedLinkedList;";
+            signature = "Lorg/huawei/GeneratedLinkedList<Ljava/lang/Integer;>;";
         }
         return super.visitField(access, name, descriptor, signature, value);
     }

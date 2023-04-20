@@ -26,7 +26,7 @@ public class AsmTransformer implements ClassFileTransformer {
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 
         //if("LinkedListTest".equals(className) || "LinkedListFieldListInClassTest".equals(className)) {
-        if(classesForReplacing.contains(className)){
+        if(classesForReplacing.contains(className) || className.startsWith("com/google/common") || className.startsWith("org/apache/commons")){
             ClassReader cr = new ClassReader(classfileBuffer);
             ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_FRAMES);
             ClassVisitorImpl classVisitor = new ClassVisitorImpl(cw);
