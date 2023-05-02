@@ -26,7 +26,7 @@ public class MethodVisitorImpl extends MethodVisitor  {
     //Instruction "NEW"
     @Override
     public void visitTypeInsn(int opcode, String type) {
-        System.out.println("TYPE: "+type);
+//        System.out.println("TYPE: "+type);
         if("java/util/LinkedList".equals(type)){
             type = "org/huawei/GeneratedLinkedList";
         }
@@ -35,7 +35,7 @@ public class MethodVisitorImpl extends MethodVisitor  {
 
     @Override
     public void visitFieldInsn(int opcode, String owner, String name, String descriptor) {
-        System.out.println("FILED OWNER: " + owner+" "+descriptor);
+//        System.out.println("FILED OWNER: " + owner+" "+descriptor);
         if("Ljava/util/LinkedList;".equals(descriptor))
             descriptor = "Lorg/huawei/GeneratedLinkedList;";
         super.visitFieldInsn(opcode, owner, name, descriptor);

@@ -2,8 +2,8 @@ package org.huawei.agent;
 
 import org.huawei.agent.util.ClassNamesReaderUtil;
 import org.huawei.agent.visitors.ClassVisitorImpl;
+import org.huawei.agent.writers.ClassWriterImpl;
 import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -27,8 +27,11 @@ public class AsmTransformer implements ClassFileTransformer {
 
         //if("LinkedListTest".equals(className) || "LinkedListFieldListInClassTest".equals(className)) {
         if(classesForReplacing.contains(className) || className.startsWith("com/google/common") || className.startsWith("org/apache/commons")){
+//            System.out.println("ClassName: " + className + " Class being redefined ? " + (classBeingRedefined!=null ? classBeingRedefined.getName(): "not"));
             ClassReader cr = new ClassReader(classfileBuffer);
-            ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_FRAMES);
+            ClassWriterImpl cw = new ClassWriterImpl(cr, ClassWriterImpl.COMPUTE_FRAMES);
+//            ClassWriterStrategy.FrameComputingClassWriter cw = new ClassWriterStrategy.FrameComputingClassWriter(cr, ClassWriter.COMPUTE_FRAMES,TypePool.ClassLoading.of(loader));
+
             ClassVisitorImpl classVisitor = new ClassVisitorImpl(cw);
             cr.accept(classVisitor, 0);
             return cw.toByteArray();

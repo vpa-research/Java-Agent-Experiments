@@ -12,6 +12,13 @@ public class ClassNamesReaderUtil {
         classesSet.add("LinkedListTest");
         classesSet.add("ListContainer");
         classesSet.add("LinkedListWithStaticMethodTest");
+        classesSet.add("CommonsMathTest");
+        classesSet.add("ListsTest");
+        classesSet.add("MyLinkedListsTest");
+        classesSet.add("com/huawei/MyLists");
+        classesSet.add("com/huawei/MyInts");
+        classesSet.add("com/huawei/MyConverter");
+        classesSet.add("com/huawei/MyConverter$ReverseMyConverter");
         return classesSet;
     }
 }

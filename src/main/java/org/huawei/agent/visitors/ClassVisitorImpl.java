@@ -13,7 +13,7 @@ public class ClassVisitorImpl extends ClassVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-        //System.out.println("Name of the current method: " + name+" \nDescriptor of the current method: " + descriptor+" "+ signature);
+//        System.out.println("Name of the current method: " + name+" \nDescriptor of the current method: " + descriptor+" "+ signature);
 
         if(descriptor.contains("java/util/LinkedList")){
 //            descriptor = "()Lorg/huawei/GeneratedLinkedList;";
