@@ -23,6 +23,7 @@ public class ClassWriterImpl extends ClassWriter {
     protected String getCommonSuperClass(String type1, String type2) {
 
         try {
+            System.out.println("Classes: "+type1+"   "+ type2);
             List<String> aSuperClasses = new LinkedList<>();
             List<String> bSuperClasses = new LinkedList<>();
             ClassReader aClass = new ClassReader(type1);

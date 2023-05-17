@@ -41,7 +41,11 @@ public class RedefineClassAgent {
 //        // Add my generated implementation of the LinkedList to boostrap classLoader;
 //        // Name of this implementation is: "org.huawei.GeneratedLinkedList"
         JarFile jar = new JarFile(agentArgs);
-        inst.appendToBootstrapClassLoaderSearch(jar);
+//        inst.appendToBootstrapClassLoaderSearch(jar);
+        inst.appendToSystemClassLoaderSearch(jar);
+//        for (Class allLoadedClass : inst.getAllLoadedClasses()) {
+//            System.out.println("LOADED: "+ allLoadedClass.getName());
+//        }
 //
 //        // find a reference to the class and method you wish to inject
 //        ClassPool classPool = ClassPool.getDefault();

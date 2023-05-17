@@ -15,10 +15,14 @@ public class ClassNamesReaderUtil {
         classesSet.add("CommonsMathTest");
         classesSet.add("ListsTest");
         classesSet.add("MyLinkedListsTest");
+        classesSet.add("ArrayListGuavaTest");
+        classesSet.add("ArrayListGuavaTest$1");
         classesSet.add("com/huawei/MyLists");
         classesSet.add("com/huawei/MyInts");
         classesSet.add("com/huawei/MyConverter");
         classesSet.add("com/huawei/MyConverter$ReverseMyConverter");
+        classesSet.add("IterablesTest");
+        classesSet.add("IterablesTest$DiesOnIteratorArrayList");
         return classesSet;
     }
 }

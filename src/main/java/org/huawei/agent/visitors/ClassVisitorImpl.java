@@ -12,8 +12,20 @@ public class ClassVisitorImpl extends ClassVisitor {
     }
 
     @Override
+    public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
+
+        if("java/util/ArrayList".equals(superName))
+            superName = "org/huawei/GeneratedArrayList";
+
+        if("java/util/LinkedList".equals(superName))
+            superName="org/huawei/GeneratedLinkedList";
+
+        super.visit(version, access, name, signature, superName, interfaces);
+    }
+
+    @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-//        System.out.println("Name of the current method: " + name+" \nDescriptor of the current method: " + descriptor+" "+ signature);
+        System.out.println("Name of the current method: " + name+" \nDescriptor of the current method: " + descriptor+" "+ signature);
 
         if(descriptor.contains("java/util/LinkedList")){
 //            descriptor = "()Lorg/huawei/GeneratedLinkedList;";
@@ -21,6 +33,12 @@ public class ClassVisitorImpl extends ClassVisitor {
             descriptor = descriptor.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
             signature = signature.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
         }
+
+        if(descriptor.contains("java/util/ArrayList")){
+            descriptor = descriptor.replaceAll("java/util/ArrayList","org/huawei/GeneratedArrayList");
+            signature = signature.replaceAll("java/util/ArrayList","org/huawei/GeneratedArrayList");
+        }
+
         MethodVisitor defaultMethodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions);
         return new MethodVisitorImpl(defaultMethodVisitor);
     }
@@ -30,8 +48,16 @@ public class ClassVisitorImpl extends ClassVisitor {
         //System.out.println("DESCRIPTOR OF THE FIELD: "+descriptor+" Name: " + name+" Signature: "+signature+" Value: " + value);
         if("Ljava/util/LinkedList;".equals(descriptor)) {
             descriptor = "Lorg/huawei/GeneratedLinkedList;";
-            signature = "Lorg/huawei/GeneratedLinkedList<Ljava/lang/Integer;>;";
+            if(signature!=null)
+                signature = signature.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
         }
+
+        if("Ljava/util/ArrayList;".equals(descriptor)) {
+            descriptor = "Lorg/huawei/GeneratedArrayList;";
+            if(signature!=null)
+                signature = signature.replaceAll("java/util/ArrayList","org/huawei/GeneratedArrayList");
+        }
+
         return super.visitField(access, name, descriptor, signature, value);
     }
 
