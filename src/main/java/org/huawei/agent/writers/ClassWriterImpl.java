@@ -32,6 +32,9 @@ public class ClassWriterImpl extends ClassWriter {
             String bSuper = bClass.getSuperName();
 //            System.out.println("aClass: " + aClass.getClassName()+" bClass: " + bClass.getClassName() +
 //                    " aSuper: " + aSuper + " bSuper:" + bSuper);
+            //Because super class of the Object will be null !!!
+            if("java/lang/Object".equals(aClass.getClassName()) || "java/lang/Object".equals(bClass.getClassName()))
+                return "java/lang/Object";
             //1) aClass extends bClass
             if(aSuper.equals(bClass.getClassName()))
                 return aSuper;

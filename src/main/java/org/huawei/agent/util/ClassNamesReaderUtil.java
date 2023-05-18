@@ -23,6 +23,7 @@ public class ClassNamesReaderUtil {
         classesSet.add("com/huawei/MyConverter$ReverseMyConverter");
         classesSet.add("IterablesTest");
         classesSet.add("IterablesTest$DiesOnIteratorArrayList");
+        classesSet.add("SetsTestMethodTestNewCOWASFromIterableTest");
         return classesSet;
     }
 }

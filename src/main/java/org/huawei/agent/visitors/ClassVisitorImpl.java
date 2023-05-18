@@ -31,12 +31,14 @@ public class ClassVisitorImpl extends ClassVisitor {
 //            descriptor = "()Lorg/huawei/GeneratedLinkedList;";
 //            signature = "<E:Ljava/lang/Object;>()Lorg/huawei/GeneratedLinkedList<TE;>;";
             descriptor = descriptor.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
-            signature = signature.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
+            if(signature!=null)
+                signature = signature.replaceAll("java/util/LinkedList","org/huawei/GeneratedLinkedList");
         }
 
         if(descriptor.contains("java/util/ArrayList")){
             descriptor = descriptor.replaceAll("java/util/ArrayList","org/huawei/GeneratedArrayList");
-            signature = signature.replaceAll("java/util/ArrayList","org/huawei/GeneratedArrayList");
+            if(signature!=null)
+                signature = signature.replaceAll("java/util/ArrayList","org/huawei/GeneratedArrayList");
         }
 
         MethodVisitor defaultMethodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions);
