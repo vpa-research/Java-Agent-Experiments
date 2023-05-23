@@ -1,0 +1,2 @@
+java/util/LinkedList org/huawei/GeneratedLinkedList
+java/util/ArrayList org/huawei/GeneratedArrayList

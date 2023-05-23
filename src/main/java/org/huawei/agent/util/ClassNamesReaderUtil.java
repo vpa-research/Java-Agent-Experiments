@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ClassNamesReaderUtil {
-    public static Set<String> getClassNames(String pathToClasses){
+    public static Set<String> getClassNames(){
         //TODO
         Set<String> classesSet = new HashSet<>();
         classesSet.add("LinkedListFieldListInClassTest");
@@ -24,6 +24,7 @@ public class ClassNamesReaderUtil {
         classesSet.add("IterablesTest");
         classesSet.add("IterablesTest$DiesOnIteratorArrayList");
         classesSet.add("SetsTestMethodTestNewCOWASFromIterableTest");
+        classesSet.add("OptionalDoubleTest");
         return classesSet;
     }
 }
