@@ -1,2 +1,4 @@
-java/util/LinkedList org/huawei/GeneratedLinkedList
-java/util/ArrayList org/huawei/GeneratedArrayList
+java/util/LinkedList generated/java/util/LinkedList
+java/util/ArrayList generated/java/util/ArrayList
+java/util/HashSet generated/java/util/HashSet
+java/util/HashMap generated/java/util/HashMap

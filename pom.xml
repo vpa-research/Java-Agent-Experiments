@@ -72,7 +72,7 @@
                 <version>2.12.4</version>
                 <configuration>
                     <argLine>
-                        -javaagent:target/mockTime-jar-with-dependencies.jar="/Users/alekseevaroslav/Downloads/GeneratedCollectionClasses/target/GeneratedCollectionClasses-1.0-SNAPSHOT.jar"="/Users/alekseevaroslav/Downloads/Java-Agent-Experiments2/replacements for the original classes.txt"
+                        -javaagent:target/mockTime-jar-with-dependencies.jar="/Users/alekseevaroslav/Downloads/GeneratedCollectionClasses/target/GeneratedCollectionClasses-1.0-SNAPSHOT.jar"="/Users/alekseevaroslav/Downloads/Java-Agent-Experiments22/replacements for the original classes.txt"
 <!--                        &#45;&#45;add-exports java.base/java.util=ALL-UNNAMED &#45;&#45;add-reads java.base=ALL-UNNAMED-->
 <!--                        -verbose:class-->
                     </argLine>
@@ -83,8 +83,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <target>1.8</target>
-                    <source>1.8</source>
+                    <target>16</target>
+                    <source>16</source>
                 </configuration>
             </plugin>
 

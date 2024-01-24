@@ -19,7 +19,7 @@ public class ClassVisitorImpl extends ClassVisitor {
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
 
-        if(classesMatcher.containsKey(superName))
+        if (classesMatcher.containsKey(superName))
             superName = classesMatcher.get(superName);
 
         super.visit(version, access, name, signature, superName, interfaces);
@@ -27,12 +27,10 @@ public class ClassVisitorImpl extends ClassVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
-        System.out.println("Name of the current method: " + name+" \nDescriptor of the current method: " + descriptor+" "+ signature);
-
         for (Map.Entry<String, String> entry : classesMatcher.entrySet()) {
-            if(descriptor.contains(entry.getKey())){
+            if (descriptor.contains(entry.getKey())) {
                 descriptor = descriptor.replaceAll(entry.getKey(), entry.getValue());
-                if(signature != null)
+                if (signature != null)
                     signature = signature.replaceAll(entry.getKey(), entry.getValue());
                 break;
             }
@@ -44,12 +42,10 @@ public class ClassVisitorImpl extends ClassVisitor {
 
     @Override
     public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
-        //System.out.println("DESCRIPTOR OF THE FIELD: "+descriptor+" Name: " + name+" Signature: "+signature+" Value: " + value);
-
         for (Map.Entry<String, String> entry : classesMatcher.entrySet()) {
-            if(descriptor.contains(entry.getKey())){
+            if (descriptor.contains(entry.getKey())) {
                 descriptor = descriptor.replaceAll(entry.getKey(), entry.getValue());
-                if(signature != null)
+                if (signature != null)
                     signature = signature.replaceAll(entry.getKey(), entry.getValue());
             }
         }

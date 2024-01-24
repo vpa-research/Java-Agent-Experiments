@@ -2,9 +2,10 @@ package org.huawei.agent.visitors;
 
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+
 import java.util.Map;
 
-public class MethodVisitorImpl extends MethodVisitor  {
+public class MethodVisitorImpl extends MethodVisitor {
 
     private Map<String, String> classesMatcher;
 
@@ -15,15 +16,12 @@ public class MethodVisitorImpl extends MethodVisitor  {
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
-        //System.out.println("Name of the method: " + name+" Descriptor of the method: "+ descriptor+" OWNER: " + owner+" " + opcode);
-
-        if(classesMatcher.containsKey(owner))
+        if (classesMatcher.containsKey(owner))
             owner = classesMatcher.get(owner);
 
         for (Map.Entry<String, String> entry : classesMatcher.entrySet()) {
-            if(descriptor.contains(entry.getKey())){
+            if (descriptor.contains(entry.getKey())) {
                 descriptor = descriptor.replaceAll(entry.getKey(), entry.getValue());
-                System.out.println("NEW DESCRIPTOR: "+ descriptor);
                 break;
             }
         }
@@ -35,7 +33,7 @@ public class MethodVisitorImpl extends MethodVisitor  {
     @Override
     public void visitTypeInsn(int opcode, String type) {
 
-        if(classesMatcher.containsKey(type))
+        if (classesMatcher.containsKey(type))
             type = classesMatcher.get(type);
 
         super.visitTypeInsn(opcode, type);
@@ -44,10 +42,8 @@ public class MethodVisitorImpl extends MethodVisitor  {
     @Override
     public void visitFieldInsn(int opcode, String owner, String name, String descriptor) {
 
-        System.out.println("FILED OWNER: " + owner+" "+descriptor);
-
         for (Map.Entry<String, String> entry : classesMatcher.entrySet()) {
-            if(descriptor.contains(entry.getKey())){
+            if (descriptor.contains(entry.getKey())) {
                 descriptor = descriptor.replaceAll(entry.getKey(), entry.getValue());
             }
         }

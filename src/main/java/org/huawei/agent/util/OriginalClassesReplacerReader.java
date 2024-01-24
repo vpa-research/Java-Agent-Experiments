@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class OriginalClassesReplacerReader {
-    private Map<String,String> classesMatcher = new HashMap<>();
+    private Map<String, String> classesMatcher = new HashMap<>();
 
-    public Map<String,String> readClassesFile() {
+    public Map<String, String> readClassesFile() {
         try {
             File file = new File(AgentArgsHandler.replacerClassesTxtPath());
             Scanner scanner = new Scanner(file);
@@ -23,7 +23,7 @@ public class OriginalClassesReplacerReader {
         return classesMatcher;
     }
 
-    private void addNewClasses(String currentClassesLine){
+    private void addNewClasses(String currentClassesLine) {
         String[] classes = currentClassesLine.split(" ");
         classesMatcher.put(classes[0].trim(), classes[1].trim());
     }

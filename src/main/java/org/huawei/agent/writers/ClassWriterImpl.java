@@ -23,7 +23,7 @@ public class ClassWriterImpl extends ClassWriter {
     protected String getCommonSuperClass(String type1, String type2) {
 
         try {
-            System.out.println("Classes: "+type1+"   "+ type2);
+            System.out.println("Classes: " + type1 + "   " + type2);
             List<String> aSuperClasses = new LinkedList<>();
             List<String> bSuperClasses = new LinkedList<>();
             ClassReader aClass = new ClassReader(type1);
@@ -33,27 +33,27 @@ public class ClassWriterImpl extends ClassWriter {
 //            System.out.println("aClass: " + aClass.getClassName()+" bClass: " + bClass.getClassName() +
 //                    " aSuper: " + aSuper + " bSuper:" + bSuper);
             //Because super class of the Object will be null !!!
-            if("java/lang/Object".equals(aClass.getClassName()) || "java/lang/Object".equals(bClass.getClassName()))
+            if ("java/lang/Object".equals(aClass.getClassName()) || "java/lang/Object".equals(bClass.getClassName()))
                 return "java/lang/Object";
             //1) aClass extends bClass
-            if(aSuper.equals(bClass.getClassName()))
+            if (aSuper.equals(bClass.getClassName()))
                 return aSuper;
-            //2) bClass extends aClass
-            else if(bSuper.equals(aClass.getClassName()))
+                //2) bClass extends aClass
+            else if (bSuper.equals(aClass.getClassName()))
                 return bSuper;
-            //3)
-            else if(!isInterface(aClass) && !isInterface(bClass)){
-                do{
+                //3)
+            else if (!isInterface(aClass) && !isInterface(bClass)) {
+                do {
                     String className = aClass.getClassName();
-                    if("java/lang/Object".equals(className))
+                    if ("java/lang/Object".equals(className))
                         break;
                     aSuperClasses.add(className);
                     aClass = new ClassReader(aClass.getSuperName());
                 } while (true);
 
-                do{
+                do {
                     String className = bClass.getClassName();
-                    if("java/lang/Object".equals(className))
+                    if ("java/lang/Object".equals(className))
                         break;
                     bSuperClasses.add(className);
                     bClass = new ClassReader(bClass.getSuperName());
@@ -62,7 +62,7 @@ public class ClassWriterImpl extends ClassWriter {
 //                System.out.println(bSuperClasses);
                 for (String aSuperClass : aSuperClasses) {
                     for (String bSuperClass : bSuperClasses) {
-                        if(aSuperClass.equals(bSuperClass))
+                        if (aSuperClass.equals(bSuperClass))
                             return aSuperClass;
                     }
                 }

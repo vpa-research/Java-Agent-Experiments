@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ClassNamesReaderUtil {
-    public static Set<String> getClassNames(){
+    public static Set<String> getClassNames() {
         //TODO
         Set<String> classesSet = new HashSet<>();
         classesSet.add("LinkedListFieldListInClassTest");
@@ -25,6 +25,11 @@ public class ClassNamesReaderUtil {
         classesSet.add("IterablesTest$DiesOnIteratorArrayList");
         classesSet.add("SetsTestMethodTestNewCOWASFromIterableTest");
         classesSet.add("OptionalDoubleTest");
+        classesSet.add("NewArrayListTest");
+        classesSet.add("org/huawei/linkedlisttests/RegressionTest");
+        classesSet.add("org/huawei/arraylisttests/RegressionTest");
+        classesSet.add("org/huawei/hashsettests/RegressionTest");
+        classesSet.add("org/huawei/linkedlist/RegressionTest");
         return classesSet;
     }
 }

@@ -26,9 +26,7 @@ public class AsmTransformer implements ClassFileTransformer {
 
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
-
-        if(classesForReplacing.contains(className) || className.startsWith("com/google/common") || className.startsWith("org/apache/commons") || className.startsWith("org/huawei/linkedlisttests")){
-//            System.out.println("ClassName: " + className + " Class being redefined ? " + (classBeingRedefined!=null ? classBeingRedefined.getName(): "not"));
+        if(classesForReplacing.contains(className) || className.startsWith("com/google/common") || className.startsWith("org/apache/commons") || className.startsWith("org/huawei/")){
             ClassReader cr = new ClassReader(classfileBuffer);
             ClassWriterImpl cw = new ClassWriterImpl(cr, ClassWriterImpl.COMPUTE_FRAMES);
             ClassVisitorImpl classVisitor = new ClassVisitorImpl(cw, classesMatcher);
