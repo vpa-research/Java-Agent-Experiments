@@ -30,6 +30,7 @@ public class ClassNamesReaderUtil {
         classesSet.add("org/huawei/arraylisttests/RegressionTest");
         classesSet.add("org/huawei/hashsettests/RegressionTest");
         classesSet.add("org/huawei/linkedlist/RegressionTest");
+        classesSet.add("org/huawei/arraylist/RegressionTest");
         return classesSet;
     }
 }
