@@ -1,4 +1,5 @@
 java/util/LinkedList generated/java/util/LinkedList
 java/util/ArrayList generated/java/util/ArrayList
-java/util/HashSet generated/java/util/HashSet
+java/util/HashSet generated/java/util/LinkedHashSet
+java/util/LinkedHashSet generated/java/util/LinkedHashSet
 java/util/HashMap generated/java/util/HashMap
