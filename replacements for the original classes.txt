@@ -6,3 +6,4 @@ java/util/HashMap generated/java/util/HashMap
 java/util/LinkedHashMap generated/java/util/HashMap
 java/util/Optional generated/java/util/Optional
 java/util/OptionalInt generated/java/util/OptionalInt
+java/util/OptionalLong generated/java/util/OptionalLong
