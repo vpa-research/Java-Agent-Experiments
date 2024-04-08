@@ -4,3 +4,4 @@ java/util/HashSet generated/java/util/LinkedHashSet
 java/util/LinkedHashSet generated/java/util/LinkedHashSet
 java/util/HashMap generated/java/util/HashMap
 java/util/LinkedHashMap generated/java/util/HashMap
+java/util/Optional generated/java/util/Optional
